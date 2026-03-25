@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cormorant.variable} ${dmSans.variable} h-full antialiased`}
+      className={`${cormorant.variable} ${dmSans.variable} h-full antialiased dark`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
