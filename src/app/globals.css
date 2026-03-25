@@ -46,6 +46,13 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+  --color-gold: #c9a96e;
+  --color-bg-base: #0c0e14;
+  --color-bg-surface: #13161f;
+  --color-bg-raised: #1a1d28;
+
+  --font-family-sans: var(--font-dm-sans), sans-serif;
+  --font-family-serif: var(--font-cormorant), serif;
 }
 
 :root {
@@ -81,6 +88,25 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  /* End ShadCN tokens*/
+  /* My custom Roam tokens */
+  --font-serif: var(--font-cormorant);
+  --font-sans: var(--font-dm-sans);
+
+  --gold: #c9a96e;
+  --gold-muted: rgba(201, 169, 110, 0.15);
+  --gold-border: rgba(201, 169, 110, 0.25);
+
+  --bg-base: #0c0e14;
+  --bg-surface: #13161f;
+  --bg-raised: #1a1d28;
+
+  --border-subtle: rgba(255, 255, 255, 0.07);
+  --border-default: rgba(255, 255, 255, 0.12);
+
+  --text-primary: #ede9e1;
+  --text-secondary: rgba(237, 233, 225, 0.5);
+  --text-tertiary: rgba(237, 233, 225, 0.3);
 }
 
 .dark {
@@ -127,4 +153,19 @@
   html {
     @apply font-sans;
   }
+}
+
+html {
+  font-family: var(--font-sans), sans-serif;
+}
+
+body {
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-serif {
+  font-family: var(--font-serif), serif;
 }
