@@ -1,4 +1,3 @@
-import Navbar from "@/components/Navbar";
 import Tripcard from "@/components/TripCard";
 import { seedTrips } from "@/lib/seedData";
 import Link from "next/link";
@@ -6,7 +5,6 @@ import Link from "next/link";
 export default function Home() {
   return (
     <main>
-      <Navbar />
       <section className="px-10 pt-20 pb-16 max-w-2xl">
         <p className="text-xs tracking-widest text-gold uppercase mb-4">
           AI-powered travel planning
