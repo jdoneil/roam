@@ -161,9 +161,9 @@ html {
 
 body {
   background: var(--bg-base);
-  color: var(--text-primary);
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .font-serif {
