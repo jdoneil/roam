@@ -1,9 +1,28 @@
-export default function Trip() {
-  return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        Trip page
-      </main>
-    </div>
-  );
+"use client";
+
+import { useEffect, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
+import { Trip } from "@/types";
+import { getTripById } from "@/lib/tripStorage";
+import ItineraryView from "@/components/ItineraryView";
+
+export default function TripPage() {
+  const { id } = useParams();
+  const router = useRouter();
+  const [trip, setTrip] = useState<Trip | null>(null);
+
+  useEffect(() => {
+    const found = getTripById(id as string);
+    if (!found) router.push("/");
+    else setTrip(found);
+  }, [id, router]);
+
+  if (!trip)
+    return (
+      <div className="flex items-center justify-center min-h-[60vh]">
+        <p className="text-(--text-tertiary) text-sm">Loading trip...</p>
+      </div>
+    );
+
+  return <ItineraryView trip={trip} />;
 }
