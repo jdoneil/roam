@@ -1,36 +1,109 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Roam
 
-## Getting Started
+[![Roam itinerary view](public/screenshots/ItineraryView.png)](https://roam-zeta.vercel.app)
 
-First, run the development server:
+Roam is a full-stack travel itinerary planner that uses AI to generate personalized day-by-day trip plans. Built as a portfolio project/side project. [See the live site here](https://roam-zeta.vercel.app)
+
+## Features
+
+- **AI itinerary generation** — describe your destination, dates, travel vibe, and number of travelers and get a full day-by-day itinerary generated in seconds
+- **Interactive map view** — each day's activities are pinned on a Mapbox map with a route line and detail panel
+- **Trip storage** — trips are saved to localStorage and accessible from the My Trips page
+- **Password protection** — a lightweight cookie-based auth gate protects the Anthropic API endpoint from abuse
+- **Responsive design** — works across desktop and mobile
+
+---
+
+## Tech stack
+
+- **Framework** — Next.js 15 (App Router)
+- **Language** — TypeScript
+- **Styling** — Tailwind CSS v4
+- **Components** — shadcn/ui
+- **Animations** — Framer Motion
+- **Map** — Mapbox GL via react-map-gl
+- **AI** — Anthropic API (claude-opus-4-5)
+- **Fonts** — Cormorant Garamond, DM Sans
+- **Deployment** — Vercel
+
+---
+
+## Getting started
+
+### Prerequisites
+
+- Node.js 18+
+- An [Anthropic API key](https://console.anthropic.com)
+- A [Mapbox access token](https://account.mapbox.com)
+
+### Installation
+
+```bash
+git clone https://github.com/yourusername/roam.git
+cd roam
+npm install
+```
+
+### Environment variables
+
+Create a `.env.local` file in the root of the project:
+
+```
+ANTHROPIC_API_KEY=your_anthropic_key
+NEXT_PUBLIC_MAPBOX_TOKEN=your_mapbox_token
+SITE_PASSWORD=your_chosen_password
+```
+
+### Run locally
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) and enter your site password to get started.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project structure
 
-## Learn More
+```
+src/
+├── app/
+│   ├── api/
+│   │   ├── auth/
+│   │   │   ├── route.ts          # Password authentication
+│   │   │   └── check/route.ts    # Auth status check
+│   │   └── generate/
+│   │       └── route.ts          # Anthropic API call
+│   ├── new/
+│   │   └── page.tsx              # Trip creation form
+│   ├── trip/
+│   │   └── [id]/
+│   │       └── page.tsx          # Itinerary detail page
+│   ├── trips/
+│   │   └── page.tsx              # My trips page
+│   ├── layout.tsx
+│   ├── page.tsx                  # Homepage
+│   └── globals.css
+├── components/
+│   ├── ui/                       # shadcn components
+│   ├── ActivityCard.tsx
+│   ├── FadeIn.tsx
+│   ├── GeneratingScreen.tsx
+│   ├── ItineraryView.tsx
+│   ├── MapView.tsx
+│   ├── Navbar.tsx
+│   ├── PasswordGate.tsx
+│   └── TripCard.tsx
+├── lib/
+│   ├── generateItinerary.ts      # API helper
+│   ├── seedData.ts               # Demo trip data
+│   ├── tripStorage.ts            # localStorage helpers
+│   └── utils.ts
+└── types/
+    └── index.ts                  # Shared TypeScript types
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
