@@ -1,7 +1,11 @@
+"use client";
+
 import type { Metadata } from "next";
 import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import PasswordGate from "@/components/PasswordGate";
+import { useEffect, useState } from "react";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -16,16 +20,20 @@ const dmSans = DM_Sans({
   variable: "--font-dm-sans",
 });
 
-export const metadata: Metadata = {
-  title: "Roam Trip Planner",
-  description: "Powered by Anthropic",
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [authed, setAuthed] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    // Check if already authed by hitting a lightweight endpoint
+    fetch("/api/auth/check").then((res) => {
+      setAuthed(res.ok);
+    });
+  }, []);
+
   return (
     <html
       lang="en"
@@ -33,7 +41,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <Navbar />
-        {children}
+        {authed ? children : <PasswordGate onSuccess={() => setAuthed(true)} />}
       </body>
     </html>
   );
