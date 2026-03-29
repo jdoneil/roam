@@ -95,6 +95,12 @@ export default function ItineraryView({ trip }: ItineraryViewProps) {
             ))}
           </div>
         </div>
+        <div className="overflow-hidden">
+          <MapView
+            activities={activeDay.activities}
+            activeActivity={activeActivity}
+          />
+        </div>
       </div>
     </div>
   );
