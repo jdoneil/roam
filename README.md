@@ -9,7 +9,7 @@ Roam is a full-stack travel itinerary planner that uses AI to generate personali
 - **AI itinerary generation** — describe your destination, dates, travel vibe, and number of travelers and get a full day-by-day itinerary generated in seconds
 - **Interactive map view** — each day's activities are pinned on a Mapbox map with a route line and detail panel
 - **Trip storage** — trips are saved to localStorage and accessible from the My Trips page
-- **Password protection** — a lightweight cookie-based auth gate protects the Anthropic API endpoint from abuse
+- **Password protection** — a lightweight cookie-based auth gate
 - **Responsive design** — works across desktop and mobile
 
 ---
