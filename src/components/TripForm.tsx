@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { generateItinerary } from "@/lib/generateItinerary";
 import { saveTrip } from "@/lib/tripStorage";
 import { Trip } from "@/types";
+import GeneratingTripScreen from "@/components/GeneratingTripScreen";
 
 const VIBES: TravelVibe[] = [
   "culture",
@@ -95,8 +96,10 @@ export default function TripForm() {
   const isValid =
     destination && startDate && endDate && selectedVibes.length > 0 && days > 0;
 
+  if (loading) return <GeneratingTripScreen destination={destination} />;
+
   return (
-    <div className="grid lg:grid-cols-[1fr_380px] grid-cols-1 grid-rows-2 lg:min-h-[calc(100vh-65px)] ">
+    <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] min-h-[calc(100vh-65px)]">
       <div className="px-14 py-12 border-r border-(--border-subtle) lg:border-r-0 lg:border-b">
         <p className="text-xs tracking-widest text-gold uppercase mb-3">
           New trip
@@ -200,7 +203,7 @@ export default function TripForm() {
         </div>
       </div>
 
-      <div className="bg-bg-surface px-8 py-10">
+      <div className="hidden lg:block bg-bg-surface px-8 py-10">
         <p className="text-xs tracking-widest text-(--text-tertiary) uppercase mb-5">
           Trip preview
         </p>
