@@ -5,14 +5,10 @@ import Tripcard from "@/components/TripCard";
 import { getTrips } from "@/lib/tripStorage";
 import { Trip } from "@/types";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function Home() {
-  const [trips, setTrips] = useState<Trip[]>([]);
-
-  useEffect(() => {
-    setTrips(getTrips());
-  }, []);
+  const [trips] = useState<Trip[]>(getTrips());
 
   return (
     <main>

@@ -9,13 +9,12 @@ import ItineraryView from "@/components/ItineraryView";
 export default function TripPage() {
   const { id } = useParams();
   const router = useRouter();
-  const [trip, setTrip] = useState<Trip | null>(null);
+  const found = getTripById(id as string);
+  const [trip] = useState<Trip | null>(found ?? null);
 
   useEffect(() => {
-    const found = getTripById(id as string);
     if (!found) router.push("/");
-    else setTrip(found);
-  }, [id, router]);
+  }, [found, router]);
 
   if (!trip)
     return (

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Trip } from "@/types";
 import { getTrips } from "@/lib/tripStorage";
 import TripCard from "@/components/TripCard";
@@ -8,11 +8,7 @@ import FadeIn from "@/components/FadeIn";
 import Link from "next/link";
 
 export default function TripsPage() {
-  const [trips, setTrips] = useState<Trip[]>([]);
-
-  useEffect(() => {
-    setTrips(getTrips());
-  }, []);
+  const [trips] = useState<Trip[]>(() => getTrips());
 
   return (
     <main className="min-h-screen bg-bg-base px-10 py-12">
