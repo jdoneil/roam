@@ -11,16 +11,10 @@ export default function Navbar() {
       </Link>
       <div className="flex items-center gap-8">
         <Link
-          href="/"
-          className="text-sm text-(--text-secondary) hover:text-(--text-primary) transition-colors"
+          href="/trips"
+          className="text-sm text-(--text-tertiary) hover:text-(--text-primary) transition-colors"
         >
           My trips
-        </Link>
-        <Link
-          href="/"
-          className="text-sm text-(--text-secondary) hover:text-(--text-primary) transition-colors"
-        >
-          Explore
         </Link>
         <Link
           href="/new"

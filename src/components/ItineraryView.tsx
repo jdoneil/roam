@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Trip, Activity, Day } from "@/types";
 import ActivityCard from "./ActivityCard";
 import MapView from "./MapView";
+import { motion } from "framer-motion";
 
 interface ItineraryViewProps {
   trip: Trip;
@@ -35,7 +36,7 @@ export default function ItineraryView({ trip }: ItineraryViewProps) {
           <span className="text-(--text-primary) font-serif capitalize text-5xl">
             {trip.destination}
           </span>
-          <p className="text-sm text-(--text-tertiary)">
+          <p className="text-sm text-(--text-tertiary) mt-3">
             {new Date(trip.startDate).toLocaleDateString("en-US", {
               month: "short",
               day: "numeric",
@@ -61,10 +62,7 @@ export default function ItineraryView({ trip }: ItineraryViewProps) {
           ))}
         </div>
       </div>
-      <div
-        className="grid flex-1 overflow-hidden"
-        style={{ gridTemplateColumns: "320px 1fr" }}
-      >
+      <div className="grid flex-1 overflow-hidden grid-cols-1 lg:grid-cols-[320px_1fr]">
         <div className="flex flex-col border-r border-(--border-subtle) overflow-hidden">
           <div className="flex border-b border-(--border-subtle) px-4 overflow-x-auto shrink-0">
             {trip.days.map((day, index) => (
@@ -77,7 +75,7 @@ export default function ItineraryView({ trip }: ItineraryViewProps) {
                     : "text-(--text-tertiary) border-transparent hover:text-(--text-secondary)"
                 }`}
               >
-                Day {index}
+                Day {index + 1}
               </div>
             ))}
           </div>
@@ -85,17 +83,25 @@ export default function ItineraryView({ trip }: ItineraryViewProps) {
             <p className="text-xs text-(--text-tertiary) tracking-widest uppercase mb-3">
               {activeDay.date}
             </p>
-            {activeDay.activities.map((activity) => (
-              <ActivityCard
-                key={activity.id}
-                activity={activity}
-                isActive={activeActivity?.id === activity.id}
-                onClick={() => setActiveActivity(activity)}
-              />
+            {activeDay.activities.map((activity, index) => (
+              <motion.div
+                key={"activity" + index}
+                initial={{ opacity: 0, x: -8 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 8 }}
+                transition={{ duration: 0.2 }}
+              >
+                <ActivityCard
+                  key={activity.id}
+                  activity={activity}
+                  isActive={activeActivity?.id === activity.id}
+                  onClick={() => setActiveActivity(activity)}
+                />
+              </motion.div>
             ))}
           </div>
         </div>
-        <div className="overflow-hidden">
+        <div className="h-100 lg:h-full overflow-hidden">
           <MapView
             activities={activeDay.activities}
             activeActivity={activeActivity}
